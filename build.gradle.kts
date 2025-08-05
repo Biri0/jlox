@@ -1,8 +1,13 @@
 plugins {
     id("java")
+    application
 }
 
-group = "it.rfmariano"
+application {
+    mainClass.set("it.rfmariano.lox.Lox")
+}
+
+group = "it.rfmariano.lox"
 version = "1.0-SNAPSHOT"
 
 repositories {
