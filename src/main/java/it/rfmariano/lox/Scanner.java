@@ -142,6 +142,22 @@ class Scanner {
         if (match('/')) {
           while (peek() != '\n' && !isAtEnd())
             advance();
+        } else if (match('*')) {
+          do {
+            while (peek() != '*' && !isAtEnd()) {
+              if (peek() == '\n')
+                line++;
+              advance();
+            }
+
+            if (isAtEnd()) {
+              Lox.error(line, "Unterminated comment.");
+              return;
+            }
+
+            advance();
+          } while (peek() != '/');
+          advance();
         } else {
           addToken(TokenType.SLASH);
         }
